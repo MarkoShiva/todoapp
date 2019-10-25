@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -17,9 +18,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private EditText itemEditText;
     private Button btn;
     private ListView itemsList;
-
+    private Spinner listSpinner;
     private ArrayList<String> items;
     private ArrayAdapter<String> adapter;
+    private ArrayAdapter<String> spinnerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +37,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         itemsList.setOnItemClickListener(this);
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, items);
         itemsList.setAdapter(adapter);
+        listSpinner = findViewById(R.id.spinner1);
+        spinnerAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,
+                getResources().getStringArray(R.array.listNames));
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        listSpinner.setAdapter(spinnerAdapter);
 
     }
 
